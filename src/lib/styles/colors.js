@@ -1,17 +1,17 @@
 
 // whites
-export const white = '#ffffff';
-export const bgWhite = '#fdfdfd';
+const white = '#ffffff';
+const bgWhite = '#fdfdfd';
 
 // blacks
-export const headerBlack = '#212121';
-export const bodyBlack = '#424242';
+const headerBlack = '#212121';
+const bodyBlack = '#424242';
 
 // grays
-export const gray = '#9e9e9e';
+const gray = '#9e9e9e';
 
 // theme
-export const theme = {
+export default {
   primary: {
     base: '#64b5f6',
     light: '#9be7ff',
@@ -22,13 +22,13 @@ export const theme = {
     light: '#ffa270',
     dark: '#c63f17'
   },
-  env: {
+  context: {
     default: '#2286c3',
     info: '#ffeb3b',
     success: '#66bb6a',
     danger: '#e54543'
   },
-  context: {
+  env: {
     white,
     bgWhite,
     headerBlack,

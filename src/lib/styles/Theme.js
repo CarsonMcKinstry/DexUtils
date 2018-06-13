@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import * as colors from './colors';
+import colors from './colors';
 import * as screenSizes from './screenSizes';
 
 const theme = {

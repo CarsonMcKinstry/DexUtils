@@ -1,12 +1,12 @@
 import React from 'react';
-// import Example from '../lib';
-// import { SecondExample } from '../lib';
 import DexUtils from '../lib';
+import { Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () => (
-  <div>
-    <DexUtils/>
-  </div>
+  <BrowserRouter>
+    <Route path="/" render={ (props) => <DexUtils {...props}/>}/>
+  </BrowserRouter>
 );
 
 export default App;
