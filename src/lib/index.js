@@ -1,8 +1,13 @@
-// import Example from './components/Example';
-// import SecondExample from './components/SecondExample';
+import React from 'react';
+import Theme from './styles/Theme';
+import Typography from './styles/Typography';
 
-// export default Example;
-
-// export {
-//   SecondExample,
-// };
+export default (props) => {
+  return(
+    <Theme>
+      <Typography>
+        Hello World
+      </Typography>
+    </Theme>
+  )
+}

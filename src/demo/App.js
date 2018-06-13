@@ -1,11 +1,11 @@
 import React from 'react';
 // import Example from '../lib';
 // import { SecondExample } from '../lib';
+import DexUtils from '../lib';
 
 const App = () => (
   <div>
-    {/* <Example />
-    <SecondExample /> */}
+    <DexUtils/>
   </div>
 );
 
