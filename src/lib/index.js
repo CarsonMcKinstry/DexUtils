@@ -1,10 +1,12 @@
 import React from 'react';
-import Theme from './styles/Theme';
+import Theme, { globalStyles } from './styles/Theme';
 import Typography from './styles/Typography';
 import MainContent from './components/MainContent';
 import UtilsSidebar from './components/UtilsSidebar';
 
 import 'material-components-web/dist/material-components-web.min.css';
+
+globalStyles();
 
 export default (props) => {
   return(
@@ -12,7 +14,7 @@ export default (props) => {
       <Typography>
         <UtilsSidebar basePath={ props.match.path }/>
         <MainContent>
-          Hello World
+
         </MainContent>
       </Typography>
     </Theme>

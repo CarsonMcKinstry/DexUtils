@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const MainContent = styled.main`
+  max-width: ${props => props.theme.screenSizes.extraLarge};
   padding: 12px;
   margin-left: 240px;
   height: 100vh;
