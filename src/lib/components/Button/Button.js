@@ -6,15 +6,15 @@ const pickProps = Component => ({secondary, inline, ...props}) => <Component {..
 
 const buttonBackgroundStyle = ({raised, unelevated, ...props}) => {
   let styles = '';
-  const { theme, utils } = props;
+  const { theme } = props;
 
   if (raised || unelevated ) {
-    styles += `background-color: ${ utils.getColor(props)}!important;`;
+    styles += `background-color: ${ theme.utils.getColor(props)}!important;`;
   } else {
-    styles += `color: ${ utils.getColor(props)}!important;`;
+    styles += `color: ${ theme.utils.getColor(props)}!important;`;
   }
-  if (utils.getColor(props) === theme.context.info) {
-    styles += `color: ${utils.hexAlpha(theme.env.bodyBlack, 0.86)}!important`;
+  if (theme.utils.getColor(props) === theme.context.info) {
+    styles += `color: ${theme.utils.hexAlpha(theme.env.bodyBlack, 0.86)}!important`;
   }
 
   return styles;
@@ -22,13 +22,13 @@ const buttonBackgroundStyle = ({raised, unelevated, ...props}) => {
 
 const afterBackground = props => {
   if (!props.raised && !props.unelevated) {
-    return `background-color: ${props.utils.getColor(props)}!important`;
+    return `background-color: ${props.theme.utils.getColor(props)}!important`;
   }
 }
 
 const borderColor = ({outlined, ...props}) => {
   if (outlined) {
-    return `${ props.utils.getColor(props)}!important;`;
+    return `${ props.theme.utils.getColor(props)}!important;`;
   } else {
     return 'transparent';
   }
