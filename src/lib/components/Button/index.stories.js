@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import IconButton from './IconButton';
 import Theme from '../../styles/Theme';
 import Typography from '../../styles/Typography';
 
@@ -47,4 +48,12 @@ storiesOf ('Button', module)
   .addCentered('secondary - dense', () => withTheme(Button)({label: 'secondary', dense: true, secondary: true}))
   .addCentered('secondary - raised', () => withTheme(Button)({label: 'secondary', raised: true, secondary: true}))
   .addCentered('secondary - unelevated', () => withTheme(Button)({label: 'secondary', unelevated: true, secondary: true}))
-  .addCentered('secondary - outlined', () => withTheme(Button)({label: 'secondary', outlined: true, secondary: true}))
+  .addCentered('secondary - outlined', () => withTheme(Button)({label: 'secondary', outlined: true, secondary: true}));
+
+storiesOf('IconButton', module)
+  .addCentered('default', () => withTheme(IconButton)({use: 'favorite'}))
+  .addCentered('secondary', () => withTheme(IconButton)({use: 'favorite', secondary: true}))
+  .addCentered('info', () => withTheme(IconButton)({use: 'favorite', context: 'info'}))
+  .addCentered('danger', () => withTheme(IconButton)({use: 'favorite', context: 'danger'}))
+  .addCentered('success', () => withTheme(IconButton)({use: 'favorite', context: 'success'}))
+
