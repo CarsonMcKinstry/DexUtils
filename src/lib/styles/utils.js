@@ -22,5 +22,5 @@ export function getColor(props) {
       ? theme.context[context]
       : secondary 
         ? theme.secondary.dark
-        : theme.primary.dark
+        : theme.context.default
 }

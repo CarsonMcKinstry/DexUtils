@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import IconButton from '../Form/IconButton';
+import IconButton from '../Button/IconButton';
 import styled from 'styled-components';
 
 const PaginationContainer = styled.div`
