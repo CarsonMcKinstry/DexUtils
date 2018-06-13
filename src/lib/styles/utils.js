@@ -19,7 +19,7 @@ export function getColor(props) {
   return disabled
     ? '#9e9e9es'
     : context 
-      ? theme[context]
+      ? theme.context[context]
       : secondary 
         ? theme.secondary.dark
         : theme.primary.dark
