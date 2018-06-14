@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 
-import { getDatabaseList } from './access';
+import { 
+  getDatabaseList, 
+  genDatabaseInterface, 
+  getTableList 
+} from './access';
 
 const { Provider, Consumer } = React.createContext({});
 
-const actions = {
-  getDatabaseList
-}
-
 class DatabaseProvider extends Component {
   state = {
-    databaseList: []
+    databaseList: [],
+    currentDatabase: null,
+    tables: []
   }
 
   componentDidMount() {
@@ -18,18 +20,32 @@ class DatabaseProvider extends Component {
       .then(databaseList => this.setState({databaseList}))
   }
 
-  setDatabaseList() {
+  setDatabaseList = () => {
     getDatabaseList()
       .then(databaseList => this.setState({databaseList}));
   }
 
-  render() {
+  setCurrentDatabase = (dbName) => {
+    genDatabaseInterface(dbName)
+      .then(database => this.setState({currentDatabase: database}))
+      .then(this.setTableList)
+  }
 
+  setTableList = () => {
+    const { currentDatabase } = this.state;
+
+    return getTableList(currentDatabase)
+      .then(tables => this.setState({tables}))
+  }
+
+  render() {
+ 
     return (
       <Provider
         value={{
           ...this.state,
-          setDatabaseList: this.setDatabaseList
+          setDatabaseList: this.setDatabaseList,
+          setCurrentDatabase: this.setCurrentDatabase
         }}
       >
         { this.props.children }

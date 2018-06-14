@@ -18,15 +18,14 @@ import Empty from './Empty';
 
 class DatabaseList extends Component {
 
-  componentWillReceiveProps(nextProps) {
-    if ( nextProps.match.isExact !== this.props.match.isExact) {
-      this.props.setDatabaseList();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if ( nextProps.match.isExact !== this.props.match.isExact) {
+  //     this.props.setDatabaseList();
+  //   }
+  // }
 
   renderDatabaseCards = () => {
     const { databaseList, match } = this.props;
-    console.log(match);
     return databaseList.map(database => (
       <PageLink 
         to={`${match.url}/${database.name}`}
