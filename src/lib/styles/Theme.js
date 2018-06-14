@@ -5,6 +5,10 @@ import * as utils from './utils';
 import screenSizes from './screenSizes';
 
 export const globalStyles = () => injectGlobal`
+  html, body {
+    padding: 0;
+    margin: 0;
+  }
   body {
     background-color: ${colors.env.bgWhite};
   }

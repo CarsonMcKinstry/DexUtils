@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import isEmpty from 'lodash/fp/isEmpty';
 import trim from 'lodash/fp/trim';
 import pickBy from 'lodash/fp/pickBy';
 import uuid from 'uuid/v4';
 import Empty from './Empty';
 import { Page, PageTitle, ActionBar, ActionBarLeft, ActionBarRight, BreadCrumbs, BackButton } from '../Page';
-import { Table, TableHeader, TableLink, TableRow, TableCell, RecordCell } from '../Table';
+import { Table, TableHeader, TableLink, TableRow, TableCell, RecordCell, TableBody } from '../Table';
 import Button from '../Button/Button';
 import PaginationBar from './PaginationBar';
 import FuzzySearch from '../Search/FuzzySearch';
@@ -89,7 +89,6 @@ class RecordList extends Component {
 
     const { match, records, tableInfo } = this.props;
 
-    if (this.state.loading) return null;
 
     return (
       <Page>
@@ -119,16 +118,17 @@ class RecordList extends Component {
           reset={ this.props.resetAdvanced }
         />
         <PaginationBar {...this.props}/>
-        {
-          isEmpty(records)
-            ? <Empty/>
-            : (
-              <Table>
-                <TableHeader headers={[...tableInfo.schema, 'Record']}/>
-                { this.renderRecordList() }
-              </Table>
-            )
-        }
+        <Table>
+          <TableHeader headers={[...tableInfo.schema, 'Record']}/>
+          <TableBody>
+          { this.state.loading
+                ? null
+                : isEmpty(records)
+                  ? <Empty/>
+                  : this.renderRecordList()
+          }
+          </TableBody>
+        </Table>
         <PaginationBar {...this.props}/>
       </Page>
     );

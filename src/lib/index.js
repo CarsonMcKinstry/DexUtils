@@ -15,9 +15,9 @@ globalStyles();
 
 export default (props) => {
   return(
-    <Theme>
-      <Typography>
-        <DatabaseProvider>
+    <DatabaseProvider>
+      <Theme>
+        <Typography>
           <UtilsSidebar basePath={ props.match.path }/>
           <MainContent>
             <Switch>
@@ -27,8 +27,8 @@ export default (props) => {
               <Route exact path={`${props.match.path}/:dbName/:table/:id`} render={ databaseConsumer(Record) }/>
             </Switch>
           </MainContent>
-        </DatabaseProvider>
-      </Typography>
-    </Theme>
+        </Typography>
+      </Theme>
+    </DatabaseProvider>
   )
 }
