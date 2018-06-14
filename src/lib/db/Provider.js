@@ -9,7 +9,7 @@ import {
   getTableInfo
 } from './access';
 import {
-  fuzzyQuery
+  fuzzyQuery, advancedQuery
 } from './query';
 
 const { Provider, Consumer } = React.createContext({});
@@ -19,7 +19,9 @@ class DatabaseProvider extends Component {
     databaseList: [],
     currentDatabase: null,
     tables: [],
-    tableInfo: {},
+    tableInfo: {
+      schema: []
+    },
     records: [],
     pagination: {
       limit: 10,
@@ -89,6 +91,25 @@ class DatabaseProvider extends Component {
       })))
   }
 
+  handleAdvancedSearch = (queryArray) => {
+    const { currentDatabase, pagination: {currentPage, limit}, tableInfo: { name } } = this.state;
+
+    advancedQuery(currentDatabase, name, queryArray, currentPage, limit)
+      .then(res => this.setState(prevState => {
+        return {
+          search: {
+            ...prevState.search,
+            queryArray
+          },
+          records: res.documents,
+          pagination: {
+            ...prevState.pagination,
+            count: res.count
+          }
+        }
+      }))
+  }
+
   changePage = (offset) => {
     this.setState({
       pagination: {
@@ -107,6 +128,16 @@ class DatabaseProvider extends Component {
     });
   }
 
+  resetAdvanced = () => {
+    this.setRecordList(this.state.currentDatabase.name, this.state.tableInfo.name)
+    this.setState(prevState => ({
+      search: {
+        ...prevState.search,
+        queryArray: []
+      }
+    }));
+  }
+
   render() {
  
     return (
@@ -118,7 +149,9 @@ class DatabaseProvider extends Component {
           setRecordList: this.setRecordList,
           changePage: this.changePage,
           setLimit: this.setLimit,
-          handleFuzzySearch: this.handleFuzzySearch
+          handleFuzzySearch: this.handleFuzzySearch,
+          handleAdvancedSearch: this.handleAdvancedSearch,
+          resetAdvanced: this.resetAdvanced
         }}
       >
         { this.props.children }

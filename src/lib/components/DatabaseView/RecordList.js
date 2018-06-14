@@ -3,10 +3,17 @@ import _ from 'lodash/fp';
 import uuid from 'uuid/v4';
 import Empty from './Empty';
 import { Page, PageTitle, ActionBar, ActionBarLeft, ActionBarRight, BreadCrumbs, BackButton } from '../Page';
-import { Table, TableHeader, TableLink, TableRow, TableCell, RecordCell, TablePagination} from '../Table';
+import { Table, TableHeader, TableLink, TableRow, TableCell, RecordCell } from '../Table';
+import Button from '../Button/Button';
+import PaginationBar from './PaginationBar';
 import FuzzySearch from '../Search/FuzzySearch';
+import AdvancedSearch from '../Search/AdvancedSearch';
 
 class RecordList extends Component {
+
+  state = {
+    advancedOpen: false
+  }
 
   componentWillReceiveProps(nextProps) {
     const { match, setRecordList } = this.props;
@@ -14,7 +21,9 @@ class RecordList extends Component {
         (nextProps.pagination.currentPage !== this.props.pagination.currentPage)
         || (nextProps.pagination.limit !== this.props.pagination.limit)
       ) {
-        if ( !_.isEmpty(_.trim(this.props.search.fuzzyQuery))) {
+        if (!_.isEmpty(this.props.search.queryArray)) {
+          this.props.handleAdvancedSearch(this.props.search.queryArray);
+        } else if ( !_.isEmpty(_.trim(this.props.search.fuzzyQuery))) {
           this.props.handleFuzzySearch(match.params.table, null);
         } else {
           setRecordList(match.params.dbName, match.params.table)
@@ -55,6 +64,12 @@ class RecordList extends Component {
     })
   }
 
+  toggleAdvancedSearch = () => {
+    this.setState(prevState => ({
+      advancedOpen: !prevState.advancedOpen
+    }));
+  }
+
   render() {
 
     const { match, records, tableInfo } = this.props;
@@ -71,26 +86,22 @@ class RecordList extends Component {
             <FuzzySearch
               onChange={ (e) => this.props.handleFuzzySearch(match.params.table, e.target.value) }
             />
+            <Button
+              unelevated
+              secondary
+              onClick={ this.toggleAdvancedSearch }
+            >
+              Advanced
+            </Button>
           </ActionBarRight>
         </ActionBar>
-        <ActionBar>
-          <ActionBarLeft>
-              <select 
-                value={this.props.pagination.limit}
-                onChange={ this.props.setLimit }
-              >
-                <option value={ 10 }>10</option>
-                <option value={ 25 }>25</option>
-                <option value={ 50 }>50</option>
-              </select>
-            </ActionBarLeft>
-            <ActionBarRight>
-              <TablePagination
-                {...this.props.pagination }
-                changePage={ this.props.changePage }
-              />
-            </ActionBarRight>
-        </ActionBar>
+        <AdvancedSearch
+          open={ this.state.advancedOpen }
+          schema={ tableInfo.schema }
+          handleSearch={ this.props.handleAdvancedSearch }
+          reset={ this.props.resetAdvanced }
+        />
+        <PaginationBar {...this.props}/>
         {
           _.isEmpty(records)
             ? <Empty/>
@@ -101,6 +112,7 @@ class RecordList extends Component {
               </Table>
             )
         }
+        <PaginationBar {...this.props}/>
       </Page>
     );
   }

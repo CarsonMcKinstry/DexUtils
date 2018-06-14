@@ -20,7 +20,8 @@ export const getTableList = (database) => {
 export const getTableInfo = async (database, table) => {
   return await {
     primaryKey: database.table(table).schema.primKey.keyPath,
-    schema: getSchema(database, table)
+    schema: getSchema(database, table),
+    name: table
   }
 }
 
