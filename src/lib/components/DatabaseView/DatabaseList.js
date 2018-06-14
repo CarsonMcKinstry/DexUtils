@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash/fp'
 import uuid from 'uuid/v4';
-import { Page, PageTitle, PageLink } from '../Page';
+import { Page, PageTitle, PageLink, ActionBar, BreadCrumbs } from '../Page';
 import { 
   Card, 
   CardInfo,
@@ -10,7 +10,8 @@ import {
   CardPrimaryAction, 
   CardHeader, 
   CardBody, 
-  Cards } from '../Cards';
+  Cards 
+} from '../Cards';
 
 import Empty from './Empty';
 
@@ -55,6 +56,8 @@ class DatabaseList extends Component {
     return (
       <Page>
         <PageTitle>Databases</PageTitle>
+        <BreadCrumbs match={this.props.match}/>
+        <ActionBar/>
         {
           _.isEmpty(this.props.databaseList)
             ? <Empty missing="databases"/>
