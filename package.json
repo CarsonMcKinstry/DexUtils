@@ -11,7 +11,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "yarn build",
-    "postpublish": "git add . && git commit -m \"Version Number Bumped\" && git push -u origin master"
+    "postpublish": "git add . && git commit -m \"Version Number Bumped\" && git push origin master"
   },
   "repository": {
     "type": "git",
