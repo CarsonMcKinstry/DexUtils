@@ -36,6 +36,7 @@ class Pagination extends Component {
   }
 
   render(){
+    console.log('rendered');
     return(
       <PaginationContainer >
         { this.props.currentPage > 1 ?
