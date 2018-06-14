@@ -1,10 +1,10 @@
-export const updateDocument = (database, table, updates) => {
+export const updateRecord = (database, table, updates) => {
   return database
             .table(table)
             .put(updates)
 }
 
-export const deleteDocument = (database, table, id) => {
+export const deleteRecord = (database, table, id) => {
   let primKey;
 
   try {

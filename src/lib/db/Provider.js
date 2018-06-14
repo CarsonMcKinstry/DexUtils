@@ -6,11 +6,16 @@ import {
   genDatabaseInterface, 
   getTableList,
   getAllRecords,
-  getTableInfo
+  getTableInfo,
+  getRecord
 } from './access';
 import {
   fuzzyQuery, advancedQuery
 } from './query';
+import { 
+  updateRecord,
+  deleteRecord
+} from './interface';
 
 const { Provider, Consumer } = React.createContext({});
 
@@ -18,6 +23,7 @@ class DatabaseProvider extends Component {
   state = {
     databaseList: [],
     currentDatabase: null,
+    currentRecord: null,
     tables: [],
     tableInfo: {
       schema: []
@@ -72,6 +78,29 @@ class DatabaseProvider extends Component {
           count: res.count
         }
       })))
+  }
+
+  setCurrentRecord = (dbName, table, id) => {
+    return this.setCurrentDatabase(dbName)
+      .then(() => getTableInfo(this.state.currentDatabase, table))
+      .then(info => this.setState({tableInfo: info}))
+      .then(() => getRecord(this.state.currentDatabase, table, id))
+      .then(record => {
+        this.setState({currentRecord: record})
+        return record;
+      })
+  }
+
+  updateRecord = (newRecord) => {
+    const { tableInfo, currentRecord, currentDatabase } = this.state;
+
+    return updateRecord(currentDatabase, tableInfo.name, newRecord);
+  }
+
+  deleteRecord = () => {
+    const { tableInfo, currentRecord, currentDatabase } = this.state;
+
+    return deleteRecord(currentDatabase, tableInfo.name, currentRecord[tableInfo.primaryKey])
   }
 
   handleFuzzySearch = (table, q) => {
@@ -144,6 +173,8 @@ class DatabaseProvider extends Component {
     })
   }
 
+
+
   render() {
  
     return (
@@ -153,12 +184,15 @@ class DatabaseProvider extends Component {
           setDatabaseList: this.setDatabaseList,
           setCurrentDatabase: this.setCurrentDatabase,
           setRecordList: this.setRecordList,
+          setCurrentRecord: this.setCurrentRecord,
           changePage: this.changePage,
           setLimit: this.setLimit,
           handleFuzzySearch: this.handleFuzzySearch,
           handleAdvancedSearch: this.handleAdvancedSearch,
           resetAdvanced: this.resetAdvanced,
-          resetRecordList: this.resetRecordList
+          resetRecordList: this.resetRecordList,
+          updateRecord: this.updateRecord,
+          deleteRecord: this.deleteRecord
         }}
       >
         { this.props.children }

@@ -36,7 +36,7 @@ export const getAllRecords = (database, table, offset = 1, limit = 10) => {
     .then(sendRecords(database, table));
 };
 
-export const getDocument = (database, table, id) => {
+export const getRecord = (database, table, id) => {
   let key;
   try {
     key = Number(id);
