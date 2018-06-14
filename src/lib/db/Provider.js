@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import { 
   getDatabaseList, 
   genDatabaseInterface, 
-  getTableList 
+  getTableList,
+  getAllRecords,
+  getTableInfo
 } from './access';
 
 const { Provider, Consumer } = React.createContext({});
@@ -12,21 +14,31 @@ class DatabaseProvider extends Component {
   state = {
     databaseList: [],
     currentDatabase: null,
-    tables: []
+    tables: [],
+    tableInfo: {},
+    records: [],
+    pagination: {
+      limit: 10,
+      count: 0,
+      currentPage: 1
+    },
+    search: {
+      query: ''
+    }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     getDatabaseList()
       .then(databaseList => this.setState({databaseList}))
   }
 
   setDatabaseList = () => {
-    getDatabaseList()
+    return getDatabaseList()
       .then(databaseList => this.setState({databaseList}));
   }
 
   setCurrentDatabase = (dbName) => {
-    genDatabaseInterface(dbName)
+    return genDatabaseInterface(dbName)
       .then(database => this.setState({currentDatabase: database}))
       .then(this.setTableList)
   }
@@ -38,6 +50,33 @@ class DatabaseProvider extends Component {
       .then(tables => this.setState({tables}))
   }
 
+  setRecordList = (dbName, table) => {
+    const { 
+      pagination: {limit, count, currentPage}
+    } = this.state;
+
+    this.setCurrentDatabase(dbName)
+      .then(() => getTableInfo(this.state.currentDatabase, table))
+      .then(info => this.setState({tableInfo: info}))
+      .then(() => getAllRecords(this.state.currentDatabase, table, currentPage, limit))
+      .then(res => this.setState(prevState => ({
+        records: res.documents,
+        pagination: {
+          ...prevState.pagination,
+          count: res.count
+        }
+      })))
+  }
+
+  changePage = (offset) => {
+    this.setState({
+      pagination: {
+        ...this.state.pagination,
+        currentPage: this.state.pagination.currentPage + offset
+      }
+    });
+  }
+
   render() {
  
     return (
@@ -45,7 +84,9 @@ class DatabaseProvider extends Component {
         value={{
           ...this.state,
           setDatabaseList: this.setDatabaseList,
-          setCurrentDatabase: this.setCurrentDatabase
+          setCurrentDatabase: this.setCurrentDatabase,
+          setRecordList: this.setRecordList,
+          changePage: this.changePage
         }}
       >
         { this.props.children }

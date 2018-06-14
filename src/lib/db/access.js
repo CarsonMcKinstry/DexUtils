@@ -26,7 +26,7 @@ export const getTableInfo = async (database, table) => {
 
 
 
-export const getAllDocuments = (database, table, offset = 1, limit = 10) => {
+export const getAllRecords = (database, table, offset = 1, limit = 10) => {
   return database
     .table(table)
     .offset((offset - 1) * limit)
