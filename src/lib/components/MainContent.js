@@ -6,8 +6,9 @@ const MainContent = styled.main`
   height: 100vh;
   box-sizing: border-box;
   background-color: ${props => props.theme.env.bgWhite};
-  @media sreen and ( max-width: ${props => props.theme.screenSizes.medium} ) {
+  @media screen and ( max-width: ${props => props.theme.screenSizes.medium} ) {
     margin-left: 0;
+    overflow-x: visible;
   }
 `;
 

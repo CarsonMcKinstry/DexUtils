@@ -13,7 +13,7 @@ const StyledDrawer = styled(Drawer)`
   &.mdc-drawer--permanent.mdc-drawer--permanent {
     background-color: ${props => props.theme.primary.base}
   }
-  @media sreen and ( max-width: ${props => props.theme.screenSizes.medium}) {
+  @media screen and ( max-width: ${props => props.theme.screenSizes.medium}) {
     width: 0!important;
   }
 `;

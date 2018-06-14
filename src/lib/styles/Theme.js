@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import colors from './colors';
 import * as utils from './utils';
-import * as screenSizes from './screenSizes';
+import screenSizes from './screenSizes';
 
 export const globalStyles = () => injectGlobal`
   body {
