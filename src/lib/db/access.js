@@ -8,9 +8,7 @@ export const genDatabaseInterface = (database) => {
 
 export const getDatabaseList = () => {
   return Dexie.getDatabaseNames()
-    .then((names) => {
-      return Promise.all(_.map(genDatabaseInterface, names));
-    })
+    .then((names) => Promise.all(_.map(genDatabaseInterface, names)))
     .then(dbs => Promise.all(_.map(getDatabaseInformation, dbs)))
 
 };

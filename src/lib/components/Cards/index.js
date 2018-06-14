@@ -10,3 +10,5 @@ export {
   CardInfoKey,
   CardInfoProp
 };
+
+export { CardPrimaryAction } from 'rmwc/Card';

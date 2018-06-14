@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const App = () => (
   <BrowserRouter>
-    <Route path="/" render={ (props) => <DexUtils {...props}/>}/>
+    <Route path="/__utils" render={ (props) => <DexUtils {...props}/>}/>
   </BrowserRouter>
 );
 
