@@ -138,6 +138,12 @@ class DatabaseProvider extends Component {
     }));
   }
 
+  resetRecordList = () => {
+    this.setState({
+      records: []
+    })
+  }
+
   render() {
  
     return (
@@ -151,7 +157,8 @@ class DatabaseProvider extends Component {
           setLimit: this.setLimit,
           handleFuzzySearch: this.handleFuzzySearch,
           handleAdvancedSearch: this.handleAdvancedSearch,
-          resetAdvanced: this.resetAdvanced
+          resetAdvanced: this.resetAdvanced,
+          resetRecordList: this.resetRecordList
         }}
       >
         { this.props.children }

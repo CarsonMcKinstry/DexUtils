@@ -15,6 +15,10 @@ class RecordList extends Component {
     advancedOpen: false
   }
 
+  componentWillUnmount() {
+    this.props.resetRecordList();
+  }
+
   componentWillReceiveProps(nextProps) {
     const { match, setRecordList } = this.props;
     if (
