@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash/fp';
 import uuid from 'uuid/v4';
 import Empty from './Empty';
-import { Page, PageLink, PageTitle, ActionBar, BreadCrumbs } from '../Page';
+import { Page, PageLink, PageTitle, ActionBar, ActionBarLeft, BreadCrumbs, BackButton } from '../Page';
 import { 
   Card, 
   CardInfo,
@@ -15,12 +15,6 @@ import {
 } from '../Cards';
 
 class DatabaseTables extends Component {
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.match.isExact !== this.props.match.isExact) {
-  //     this.setDatabaseInterface();
-  //   }
-  // }
 
   componentWillMount() {
     const { match, setCurrentDatabase } = this.props;
@@ -63,7 +57,11 @@ class DatabaseTables extends Component {
       <Page>
         <PageTitle>Database: { match.params.dbName }</PageTitle>
         <BreadCrumbs match={ match }/>
-        <ActionBar/>
+        <ActionBar>
+          <ActionBarLeft>
+            <BackButton/>
+          </ActionBarLeft>
+        </ActionBar>
         {
           _.isEmpty(this.props.tables)
             ? <Empty missing="tables"/>
