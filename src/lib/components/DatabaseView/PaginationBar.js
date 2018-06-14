@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ActionBar, ActionBarLeft, ActionBarRight } from '../Page';
 import { TablePagination } from '../Table';
 

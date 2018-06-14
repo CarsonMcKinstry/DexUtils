@@ -92,7 +92,7 @@ class DatabaseProvider extends Component {
   }
 
   updateRecord = (newRecord) => {
-    const { tableInfo, currentRecord, currentDatabase } = this.state;
+    const { tableInfo, currentDatabase } = this.state;
 
     return updateRecord(currentDatabase, tableInfo.name, newRecord);
   }
