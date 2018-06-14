@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import { 
   getDatabaseList, 
@@ -7,6 +8,9 @@ import {
   getAllRecords,
   getTableInfo
 } from './access';
+import {
+  fuzzyQuery
+} from './query';
 
 const { Provider, Consumer } = React.createContext({});
 
@@ -23,7 +27,7 @@ class DatabaseProvider extends Component {
       currentPage: 1
     },
     search: {
-      query: ''
+      fuzzyQuery: ''
     }
   }
 
@@ -52,7 +56,7 @@ class DatabaseProvider extends Component {
 
   setRecordList = (dbName, table) => {
     const { 
-      pagination: {limit, count, currentPage}
+      pagination: {limit, currentPage}
     } = this.state;
 
     this.setCurrentDatabase(dbName)
@@ -60,6 +64,23 @@ class DatabaseProvider extends Component {
       .then(info => this.setState({tableInfo: info}))
       .then(() => getAllRecords(this.state.currentDatabase, table, currentPage, limit))
       .then(res => this.setState(prevState => ({
+        records: res.documents,
+        pagination: {
+          ...prevState.pagination,
+          count: res.count
+        }
+      })))
+  }
+
+  handleFuzzySearch = (table, q) => {
+    const query = _.isNil(q) ? this.state.search.fuzzyQuery : q;
+    const { currentDatabase } = this.state;
+    fuzzyQuery(currentDatabase, table, query, this.state.pagination.currentPage, this.state.pagination.limit)
+      .then(res => this.setState(prevState => ({
+        search: {
+          ...prevState.search,
+          fuzzyQuery: query
+        },
         records: res.documents,
         pagination: {
           ...prevState.pagination,
@@ -96,7 +117,8 @@ class DatabaseProvider extends Component {
           setCurrentDatabase: this.setCurrentDatabase,
           setRecordList: this.setRecordList,
           changePage: this.changePage,
-          setLimit: this.setLimit
+          setLimit: this.setLimit,
+          handleFuzzySearch: this.handleFuzzySearch
         }}
       >
         { this.props.children }

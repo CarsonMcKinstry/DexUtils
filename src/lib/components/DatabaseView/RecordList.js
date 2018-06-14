@@ -14,7 +14,11 @@ class RecordList extends Component {
         (nextProps.pagination.currentPage !== this.props.pagination.currentPage)
         || (nextProps.pagination.limit !== this.props.pagination.limit)
       ) {
-      setRecordList(match.params.dbName, match.params.table)
+        if ( !_.isEmpty(_.trim(this.props.search.fuzzyQuery))) {
+          this.props.handleFuzzySearch(match.params.table, null);
+        } else {
+          setRecordList(match.params.dbName, match.params.table)
+        }
     }
   }
 
@@ -64,9 +68,9 @@ class RecordList extends Component {
             <BackButton/>
           </ActionBarLeft>
           <ActionBarRight>
-            {/* <FuzzySearch
-              onChange={ this.props.handleFuzzySearch }
-            /> */}
+            <FuzzySearch
+              onChange={ (e) => this.props.handleFuzzySearch(match.params.table, e.target.value) }
+            />
           </ActionBarRight>
         </ActionBar>
         <ActionBar>

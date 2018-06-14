@@ -6,7 +6,6 @@ const MainContent = styled.main`
   height: 100vh;
   box-sizing: border-box;
   background-color: ${props => props.theme.env.bgWhite};
-  overflow: scroll;
   @media sreen and ( max-width: ${props => props.theme.screenSizes.medium} ) {
     margin-left: 0;
   }
