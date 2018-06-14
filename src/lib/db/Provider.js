@@ -77,6 +77,15 @@ class DatabaseProvider extends Component {
     });
   }
 
+  setLimit = (e) => {
+    this.setState({
+      pagination: {
+        ...this.state.pagination,
+        limit: e.target.value
+      }
+    });
+  }
+
   render() {
  
     return (
@@ -86,7 +95,8 @@ class DatabaseProvider extends Component {
           setDatabaseList: this.setDatabaseList,
           setCurrentDatabase: this.setCurrentDatabase,
           setRecordList: this.setRecordList,
-          changePage: this.changePage
+          changePage: this.changePage,
+          setLimit: this.setLimit
         }}
       >
         { this.props.children }

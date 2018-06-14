@@ -10,7 +10,10 @@ class RecordList extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { match, setRecordList } = this.props;
-    if (nextProps.pagination.currentPage !== this.props.pagination.currentPage) {
+    if (
+        (nextProps.pagination.currentPage !== this.props.pagination.currentPage)
+        || (nextProps.pagination.limit !== this.props.pagination.limit)
+      ) {
       setRecordList(match.params.dbName, match.params.table)
     }
   }
@@ -67,7 +70,16 @@ class RecordList extends Component {
           </ActionBarRight>
         </ActionBar>
         <ActionBar>
-            <ActionBarLeft></ActionBarLeft>
+          <ActionBarLeft>
+              <select 
+                value={this.props.pagination.limit}
+                onChange={ this.props.setLimit }
+              >
+                <option value={ 10 }>10</option>
+                <option value={ 25 }>25</option>
+                <option value={ 50 }>50</option>
+              </select>
+            </ActionBarLeft>
             <ActionBarRight>
               <TablePagination
                 {...this.props.pagination }
