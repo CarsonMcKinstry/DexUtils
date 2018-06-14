@@ -1,7 +1,7 @@
 {
-  "name": "create-react-library",
-  "version": "1.1.0",
-  "description": "React NPM library starter kit based on Facebook's create react app",
+  "name": "dex-utils",
+  "version": "1.0.0",
+  "description": "",
   "main": "build/index.js",
   "scripts": {
     "start": "node scripts/start.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DimitriMikadze/create-react-library.git"
+    "url": "git+https://github.com/CarsonMcKinstry/DexUtils.git"
   },
-  "author": "Dimitri Mikadze <dimitrimikadze@gmail.com>",
+  "author": "Carson McKinstry <carson.mckinstry@gmail.com>",
   "bugs": {
-    "url": "https://github.com/DimitriMikadze/create-react-library/issues"
+    "url": "https://github.com/CarsonMcKinstry/DexUtils/issues"
   },
-  "homepage": "https://github.com/DimitriMikadze/create-react-library#readme",
-  "license": "MIT",
+  "homepage": "https://github.com/CarsonMcKinstry/DexUtils",
+  "license": "GPL v3.0",
   "dependencies": {},
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.7",
