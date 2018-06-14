@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import isNil from 'lodash/fp/isNil';
 
 import { 
   getDatabaseList, 
@@ -104,7 +104,7 @@ class DatabaseProvider extends Component {
   }
 
   handleFuzzySearch = (table, q) => {
-    const query = _.isNil(q) ? this.state.search.fuzzyQuery : q;
+    const query = isNil(q) ? this.state.search.fuzzyQuery : q;
     const { currentDatabase } = this.state;
     fuzzyQuery(currentDatabase, table, query, this.state.pagination.currentPage, this.state.pagination.limit)
       .then(res => this.setState(prevState => ({

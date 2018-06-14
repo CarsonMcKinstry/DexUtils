@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button as MDButton } from 'rmwc/Button';
+import '@material/button/dist/mdc.button.min.css';
 
 const pickProps = Component => ({secondary, inline, ...props}) => <Component {...props}/>;
 

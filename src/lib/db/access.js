@@ -1,5 +1,5 @@
 import Dexie from 'dexie';
-import _ from 'lodash/fp';
+import map from 'lodash/fp/map';
 import { getDatabaseInformation, formatTable, getSchema, sendRecords} from './utils';
 
 export const genDatabaseInterface = (database) => {
@@ -8,8 +8,8 @@ export const genDatabaseInterface = (database) => {
 
 export const getDatabaseList = () => {
   return Dexie.getDatabaseNames()
-    .then((names) => Promise.all(_.map(genDatabaseInterface, names)))
-    .then(dbs => Promise.all(_.map(getDatabaseInformation, dbs)))
+    .then((names) => Promise.all(map(genDatabaseInterface, names)))
+    .then(dbs => Promise.all(map(getDatabaseInformation, dbs)))
 
 };
 

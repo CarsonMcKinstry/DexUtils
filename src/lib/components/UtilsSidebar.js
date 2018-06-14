@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Drawer, DrawerContent, DrawerHeader } from 'rmwc/Drawer';
 import { ListItem, ListItemText } from 'rmwc/List';
 import { NavLink } from 'react-router-dom';
+import '@material/drawer/dist/mdc.drawer.min.css';
+import '@material/list/dist/mdc.list.min.css';
 
 const StyledDrawer = styled(Drawer)`
   position:fixed;

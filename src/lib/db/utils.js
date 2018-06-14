@@ -1,26 +1,41 @@
-import _ from 'lodash/fp';
+import equals from 'lodash/fp/equals';
+import includes from 'lodash/fp/includes';
+import startsWith from 'lodash/fp/startsWith';
+import identity from 'lodash/fp/identity';
+import map from 'lodash/fp/map';
+import flatten from 'lodash/fp/flatten';
+import flattenDeep from 'lodash/fp/flattenDeep';
+import reduce from 'lodash/fp/reduce';
+import toLower from 'lodash/fp/toLower';
+import compose from 'lodash/fp/compose';
+import some from 'lodash/fp/some';
+import isObject from 'lodash/fp/isObject';
+import isNumber from 'lodash/fp/isNumber';
+import curry from 'lodash/fp/curry';
+import values from 'lodash/fp/values';
+import trim from 'lodash/fp/trim';
 import filesize from 'filesize';
 
 export const filterMethods = (method) => {
   switch(method) {
     case 'is':
-      return _.equals;
+      return equals;
     case 'isNot':
-      return q => i => !_.equals(q)(i);
+      return q => i => !equals(q)(i);
     case 'like':
-      return _.includes
+      return includes
     case 'notLike':
-      return q => i => !_.includes(q)(i);
+      return q => i => !includes(q)(i);
     case 'startsWith':
-      return _.startsWith
+      return startsWith
     case 'doesntStartWith':
-      return q => i => !_.startsWith(q)(i);
+      return q => i => !startsWith(q)(i);
     case 'greaterThan':
       return n => m => Number(m) >= Number(n);
     case 'lessThan':
       return n => m => Number(m) <= Number(n);
     default: 
-      return _.identity
+      return identity
   }
 }
 
@@ -38,16 +53,16 @@ export const formatTable = async (table) => {
 
 export const getDatabaseSize = async (database) => {
   return Promise.all(database.tables.map(table => table.toArray()))
-    .then(_.flatten)
-    .then(_.map(JSON.stringify))
-    .then(_.reduce((acc, val) => acc + val.length, 0))
+    .then(flatten)
+    .then(map(JSON.stringify))
+    .then(reduce((acc, val) => acc + val.length, 0))
     .then(filesize)
 }
 
 export const getTableSize = async (table) => {
   return table.toArray()
-    .then(_.map(JSON.stringify))
-    .then(_.reduce((acc, val) => acc + val.length, 0))
+    .then(map(JSON.stringify))
+    .then(reduce((acc, val) => acc + val.length, 0))
     .then(filesize)
 }
 
@@ -67,30 +82,30 @@ export const getSchema = (database,table) => {
 }
 
 export const documentSieve = (query) => {
-  const q = _.toLower(query);
-  return _.compose(
-    _.some(i => _.startsWith(q)(i) || _.includes(q)(i)),
-    _.map(_.toLower),
+  const q = toLower(query);
+  return compose(
+    some(i => startsWith(q)(i) || includes(q)(i)),
+    map(toLower),
     flattenObject
   );
 }
 
 export const flattenObject = (obj) => {
-  return _.compose(
-    _.flattenDeep,
-    _.reduce((acc, val) => {
+  return compose(
+    flattenDeep,
+    reduce((acc, val) => {
       return [
         ...acc,
-        _.isObject(val) ? flattenObject(val) : val
+        isObject(val) ? flattenObject(val) : val
       ]
     }, []),
-    _.values
+    values
   )(obj);
 }
 
-export const sanitizeQuery = _.compose(_.trim, _.toLower, (n) => {
+export const sanitizeQuery = compose(trim, toLower, (n) => {
   const m = Number(n);
-  return _.isNaN(m) ? n : _.isNumber(m) && m; 
+  return isNaN(m) ? n : isNumber(m) && m; 
 });
 
 export const recordSieve = (query) => record => {
@@ -98,7 +113,7 @@ export const recordSieve = (query) => record => {
   return func(sanitizeQuery(query.query))(sanitizeQuery(record[query.key]));
 }
 
-export const sendRecords = _.curry(async function(database, table, documents) {
+export const sendRecords = curry(async function(database, table, documents) {
     return await {
       documents,
       count: await database.table(table).count()

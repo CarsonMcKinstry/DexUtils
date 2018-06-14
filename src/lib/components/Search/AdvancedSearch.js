@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import _ from 'lodash/fp'
+import map from 'lodash/fp/map';
+import keys from 'lodash/fp/keys';
+import compose from 'lodash/fp/compose';
 // import FormGrid from '../Form/FormGrid';
 import styled from 'styled-components';
 import Button from '../Button/Button';
@@ -43,8 +45,8 @@ const methodsEnum = {
 };
 
 const MethodSelect = props => {
-  const methodOptions = (methods) => _.compose(
-    _.map(method => (
+  const methodOptions = (methods) => compose(
+    map(method => (
       <option 
         value={methods[method]}
         key={method}
@@ -52,7 +54,7 @@ const MethodSelect = props => {
         { method }
       </option>
     )),
-    _.keys
+    keys
   )(methods)
 
   return (

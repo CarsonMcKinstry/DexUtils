@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import _ from 'lodash/fp';
+import equals from 'lodash/fp/equals';
 import { withRouter } from 'react-router-dom';
 import { Page, PageTitle, ActionBar, ActionBarLeft, ActionBarRight, BackButton, BreadCrumbs } from '../Page';
 import IconButton from '../Button/IconButton';
 import Button from '../Button/Button';
 import Editor from '../JsonEditor/Editor';
 import { Snackbar } from 'rmwc/Snackbar';
+import '@material/snackbar/dist/mdc.snackbar.min.css';
 
 class Record extends Component {
   
@@ -27,7 +28,7 @@ class Record extends Component {
   }
 
   checkForEdits = () => {
-    return _.equals(this.props.currentRecord, this.state.record);
+    return equals(this.props.currentRecord, this.state.record);
   }
 
   componentWillMount() {

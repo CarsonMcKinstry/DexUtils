@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash/fp';
+import isEmpty from 'lodash/fp/isEmpty';
 import uuid from 'uuid/v4';
 import Empty from './Empty';
 import { Page, PageLink, PageTitle, ActionBar, ActionBarLeft, BreadCrumbs, BackButton } from '../Page';
@@ -63,7 +63,7 @@ class DatabaseTables extends Component {
           </ActionBarLeft>
         </ActionBar>
         {
-          _.isEmpty(this.props.tables)
+          isEmpty(this.props.tables)
             ? <Empty missing="tables"/>
             : (
               <Cards>

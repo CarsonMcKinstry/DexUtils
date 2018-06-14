@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import _ from 'lodash/fp';
+import isEmpty from 'lodash/fp/isEmpty';
+import trim from 'lodash/fp/trim';
+import pickBy from 'lodash/fp/pickBy';
 import uuid from 'uuid/v4';
 import Empty from './Empty';
 import { Page, PageTitle, ActionBar, ActionBarLeft, ActionBarRight, BreadCrumbs, BackButton } from '../Page';
@@ -25,9 +27,9 @@ class RecordList extends Component {
         (nextProps.pagination.currentPage !== this.props.pagination.currentPage)
         || (nextProps.pagination.limit !== this.props.pagination.limit)
       ) {
-        if (!_.isEmpty(this.props.search.queryArray)) {
+        if (!isEmpty(this.props.search.queryArray)) {
           this.props.handleAdvancedSearch(this.props.search.queryArray);
-        } else if ( !_.isEmpty(_.trim(this.props.search.fuzzyQuery))) {
+        } else if ( !isEmpty(trim(this.props.search.fuzzyQuery))) {
           this.props.handleFuzzySearch(match.params.table, null);
         } else {
           setRecordList(match.params.dbName, match.params.table)
@@ -44,7 +46,7 @@ class RecordList extends Component {
     const { records, tableInfo, match } = this.props;
 
     return records.map(record => {
-      const rest = _.pickBy((v, k) => !tableInfo.schema.includes(k), record);
+      const rest = pickBy((v, k) => !tableInfo.schema.includes(k), record);
 
       return (
         <TableLink
@@ -107,7 +109,7 @@ class RecordList extends Component {
         />
         <PaginationBar {...this.props}/>
         {
-          _.isEmpty(records)
+          isEmpty(records)
             ? <Empty/>
             : (
               <Table>

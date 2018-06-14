@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {IconToggle} from 'rmwc/IconToggle';
+import '@material/icon-toggle/dist/mdc.icon-toggle.min.css';
 
 const IconButtonStyle = styled(({secondary, ...props}) => <IconToggle {...props}/>)`
   &.mdc-icon-toggle {

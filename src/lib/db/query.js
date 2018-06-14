@@ -1,10 +1,12 @@
-import _ from 'lodash/fp';
+import isEmpty from 'lodash/fp/isEmpty';
+import uniq from 'lodash/fp/uniq';
+import trim from 'lodash/fp/trim';
 import { sendRecords, documentSieve, recordSieve} from './utils';
 
 export const fuzzyQuery = (database, table, query, offset = 1, limit = 10) => {
   const db = database.table(table);
 
-  return _.isEmpty(_.trim(query))
+  return isEmpty(trim(query))
     ? db
         .offset((offset-1) * limit)
         .limit(limit)
@@ -45,7 +47,7 @@ export const advancedQuery = (database, table, queryArray, offset = 1, limit = 1
       if (i === 0) {
         next = records.filter(recordSieve(query));
       } else if (query.operator === 'or') {
-        next = _.uniq([...nextRecords,...records.filter(recordSieve(query))]);
+        next = uniq([...nextRecords,...records.filter(recordSieve(query))]);
       } else if (query.operator === 'and') {
         next = nextRecords.filter(recordSieve(query));
       }

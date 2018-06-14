@@ -10,7 +10,6 @@ import RecordList from './components/DatabaseView/RecordList';
 import Record from './components/DatabaseView/Record';
 import { databaseConsumer } from './db/Provider';
 import { Route, Switch } from 'react-router';
-import 'material-components-web/dist/material-components-web.min.css';
 
 globalStyles();
 
