@@ -1,6 +1,6 @@
 {
   "name": "dex-utils",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "A human readable interface for managing IndexedDB",
   "main": "build/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "prepare": "yarn build",
-    "publish": "npm publish . --access public"
+    "postpublish": "git add . && git commit -m \"Version Number Bumped\" && git push -u origin master"
   },
   "repository": {
     "type": "git",
