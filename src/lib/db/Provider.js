@@ -67,7 +67,7 @@ class DatabaseProvider extends Component {
       pagination: {limit, currentPage}
     } = this.state;
 
-    this.setCurrentDatabase(dbName)
+    return this.setCurrentDatabase(dbName)
       .then(() => getTableInfo(this.state.currentDatabase, table))
       .then(info => this.setState({tableInfo: info}))
       .then(() => getAllRecords(this.state.currentDatabase, table, currentPage, limit))
@@ -94,7 +94,7 @@ class DatabaseProvider extends Component {
   updateRecord = (newRecord) => {
     const { tableInfo, currentDatabase } = this.state;
 
-    return updateRecord(currentDatabase, tableInfo.name, newRecord);
+    return updateRecord(currentDatabase, tableInfo.name, newRecord, newRecord[tableInfo.primaryKey]);
   }
 
   deleteRecord = () => {
@@ -106,7 +106,7 @@ class DatabaseProvider extends Component {
   handleFuzzySearch = (table, q) => {
     const query = isNil(q) ? this.state.search.fuzzyQuery : q;
     const { currentDatabase } = this.state;
-    fuzzyQuery(currentDatabase, table, query, this.state.pagination.currentPage, this.state.pagination.limit)
+    return fuzzyQuery(currentDatabase, table, query, this.state.pagination.currentPage, this.state.pagination.limit)
       .then(res => this.setState(prevState => ({
         search: {
           ...prevState.search,
@@ -123,7 +123,7 @@ class DatabaseProvider extends Component {
   handleAdvancedSearch = (queryArray) => {
     const { currentDatabase, pagination: {currentPage, limit}, tableInfo: { name } } = this.state;
 
-    advancedQuery(currentDatabase, name, queryArray, currentPage, limit)
+    return advancedQuery(currentDatabase, name, queryArray, currentPage, limit)
       .then(res => this.setState(prevState => {
         return {
           search: {

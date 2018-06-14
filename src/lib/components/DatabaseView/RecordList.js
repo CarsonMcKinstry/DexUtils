@@ -14,32 +14,41 @@ import AdvancedSearch from '../Search/AdvancedSearch';
 class RecordList extends Component {
 
   state = {
-    advancedOpen: false
+    advancedOpen: false,
+    loading: true
   }
 
   componentWillUnmount() {
-    this.props.resetRecordList();
+    this.props.resetRecordList()
   }
 
   componentWillReceiveProps(nextProps) {
-    const { match, setRecordList } = this.props;
+    const { match, setRecordList, handleAdvancedSearch, handleFuzzySearch } = this.props;
     if (
         (nextProps.pagination.currentPage !== this.props.pagination.currentPage)
         || (nextProps.pagination.limit !== this.props.pagination.limit)
       ) {
+        this.setState({loading: true})
         if (!isEmpty(this.props.search.queryArray)) {
-          this.props.handleAdvancedSearch(this.props.search.queryArray);
+          handleAdvancedSearch(this.props.search.queryArray)
+            .then(() => this.setState({loading: false}))
+
         } else if ( !isEmpty(trim(this.props.search.fuzzyQuery))) {
-          this.props.handleFuzzySearch(match.params.table, null);
+          handleFuzzySearch(match.params.table, null)
+            .then(() => this.setState({loading: false}))
         } else {
           setRecordList(match.params.dbName, match.params.table)
+            .then(() => this.setState({loading: false}))
+
         }
     }
   }
 
   componentWillMount() {
     const { match, setRecordList } = this.props;
+    this.setState({loading: true})
     setRecordList(match.params.dbName, match.params.table)
+      .then(() => this.setState({loading: false}))
   }
 
   renderRecordList = () => {
@@ -79,6 +88,8 @@ class RecordList extends Component {
   render() {
 
     const { match, records, tableInfo } = this.props;
+
+    if (this.state.loading) return null;
 
     return (
       <Page>

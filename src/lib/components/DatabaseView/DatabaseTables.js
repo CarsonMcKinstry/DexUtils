@@ -16,14 +16,21 @@ import {
 
 class DatabaseTables extends Component {
 
+  state = {
+    loading: true
+  }
+
   componentWillMount() {
     const { match, setCurrentDatabase } = this.props;
 
-    setCurrentDatabase(match.params.dbName);
+    setCurrentDatabase(match.params.dbName)
+      .then(() => this.setState({loading: false}));
   }
 
   renderTableCards = () => {
     const { tables, match } = this.props;
+
+    if(this.state.loading) return null;
 
     return tables.map(table => (
       <PageLink
@@ -35,7 +42,7 @@ class DatabaseTables extends Component {
             <CardHeader>{ table.name }</CardHeader>
             <CardBody>
               <CardInfo>
-                <CardInfoKey># of Documents:</CardInfoKey>
+                <CardInfoKey># of Records:</CardInfoKey>
                 <CardInfoProp>{ table.count }</CardInfoProp>
                 <CardInfoKey>Total Size:</CardInfoKey>
                 <CardInfoProp>{ table.size }</CardInfoProp>
