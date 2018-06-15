@@ -1,6 +1,6 @@
 {
   "name": "dex-utils",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A human readable interface for managing IndexedDB",
   "main": "build/index.js",
   "scripts": {
