@@ -1,13 +1,13 @@
 # DexUtils
 
-A human usable interface for managing and navigating IndexedDB.
+A human usable interface for managing and navigating IndexedDB
 
 ## Prerequisites 
 
 ```
-react 16.3+
-react-dom 16.3+
-react-router 4+
+react v16.3+
+react-dom v16.3+
+react-router v4+
 ```
 ## Installing
 
@@ -47,10 +47,8 @@ ReactDOM.render(
 
 ### To-Do List
 
+[ ] Get databases not created with Dexie
 [ ] Demo
-
 [ ] Tests for both the IndexedDB interface and components
-
 [ ] JSDocs
-
 [ ] More features?
