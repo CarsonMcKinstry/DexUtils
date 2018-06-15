@@ -47,8 +47,12 @@ ReactDOM.render(
 
 ### To-Do List
 
-[ ] Get databases not created with Dexie
+[ ] Get databases not created with Dexie?
+
 [ ] Demo
+
 [ ] Tests for both the IndexedDB interface and components
+
 [ ] JSDocs
+
 [ ] More features?
