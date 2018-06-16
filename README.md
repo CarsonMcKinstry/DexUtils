@@ -4,17 +4,15 @@ A human usable interface for managing and navigating IndexedDB
 
 ## Prerequisites 
 
-```
-[react v16.3+](https://reactjs.org/)
-[react-dom v16.3+](https://reactjs.org/)
-[react-router v4+](https://github.com/ReactTraining/react-router)
-```
+[React v16.3+](https://reactjs.org/)
+
+[ReactDOM v16.3+](https://reactjs.org/)
+
+[React Router v4+](https://github.com/ReactTraining/react-router)
 
 ### Optional
 
-```
 [Dexie](http://dexie.org/)
-```
 
 ## Installing
 
@@ -25,7 +23,7 @@ yarn add dex-utils
 
 And then in your router
 
-```
+```js
 <Route path="<path/for/utils" component={DexUtils}>
 
 // OR
@@ -45,7 +43,7 @@ If you are not already using `Dexie`, you will have to tell the plug which datab
 
 ## Example
 
-```
+```js
 // index.js - entry point
 import React from 'react';
 import ReactDOM from 'react-dom';
