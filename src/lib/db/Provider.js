@@ -40,12 +40,12 @@ class DatabaseProvider extends Component {
   }
 
   componentWillMount() {
-    getDatabaseList()
-      .then(databaseList => this.setState({databaseList}))
+    this.setDatabaseList();
   }
 
   setDatabaseList = () => {
-    return getDatabaseList()
+    const { dbNames } = this.props;
+    return getDatabaseList(dbNames)
       .then(databaseList => this.setState({databaseList}));
   }
 

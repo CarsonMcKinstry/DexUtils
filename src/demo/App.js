@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom';
 
 const App = () => (
   <HashRouter>
-    <Route path="/__utils" component={DexUtils}/>
+    <Route path="/__utils" render={props => <DexUtils {...props} dbNames={['__dbnames']}/>}/>
   </HashRouter>
 );
 

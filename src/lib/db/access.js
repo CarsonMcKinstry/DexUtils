@@ -6,8 +6,10 @@ export const genDatabaseInterface = (database) => {
   return new Dexie(database).open()
 }
 
-export const getDatabaseList = () => {
+export const getDatabaseList = (dbNames = []) => {
+
   return Dexie.getDatabaseNames()
+    .then(names => names.concat(dbNames))
     .then((names) => Promise.all(map(genDatabaseInterface, names)))
     .then(dbs => Promise.all(map(getDatabaseInformation, dbs)))
 

@@ -15,7 +15,7 @@ globalStyles();
 
 export default (props) => {
   return(
-    <DatabaseProvider>
+    <DatabaseProvider dbNames={props.dbNames}>
       <Theme>
         <Typography>
           <UtilsSidebar basePath={ props.match.path }/>
