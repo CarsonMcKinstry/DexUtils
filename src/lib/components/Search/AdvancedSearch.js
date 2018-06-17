@@ -70,6 +70,10 @@ class AdvancedSearch extends Component {
     queryArray: []
   }
 
+  componentWillMount() {
+    this.setQueryArray();
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.schema.length > 0 && this.props.schema.length !== prevProps.schema.length) {
       this.setQueryArray();

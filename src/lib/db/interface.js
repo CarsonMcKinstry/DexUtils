@@ -1,7 +1,9 @@
+
+
 export const updateRecord = (database, table, updates, id) => {
   return database
             .table(table)
-            .put(updates, id)
+            .put(updates);
 }
 
 export const deleteRecord = (database, table, id) => {
