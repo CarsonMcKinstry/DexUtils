@@ -20,6 +20,7 @@ class RecordList extends Component {
 
   componentWillUnmount() {
     this.props.resetRecordList()
+    this.props.resetAdvanced();
   }
 
   componentWillReceiveProps(nextProps) {

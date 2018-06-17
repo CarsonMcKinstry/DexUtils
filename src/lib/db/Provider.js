@@ -173,10 +173,7 @@ class DatabaseProvider extends Component {
     })
   }
 
-
-
   render() {
- 
     return (
       <Provider
         value={{
