@@ -75,7 +75,7 @@ class AdvancedSearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.schema !== this.props.schema) {
+    if (nextProps.open !== this.props.open && nextProps.open) {
       this.reset();
     }
   }
