@@ -1,0 +1,10 @@
+{
+  "name": "dex-utils",
+  "version": "2.0.1",
+  "description": "A utility for managing records stored in IndexedDB",
+  "main": "index.js",
+  "repository": "git@github.com:CarsonMcKinstry/DexUtils.git",
+  "author": "Carson McKinstry <carson.mckinstry@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
