@@ -1,4 +1,4 @@
-import styled from '../styled-components';
+import styled, { css } from '../styled-components';
 
 export const DropDownContainer = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const DropDownButton = styled.button`
   letter-spacing: 0.53px;
   cursor: pointer;
   font-size: 14px;
-  padding: 6px 9px 8px 12px;
+  padding: 6px 4px 8px 12px;
   background-color: ${props => props.theme.editor};
   color: white;
   border: 0;
@@ -18,14 +18,15 @@ export const DropDownButton = styled.button`
     background-color: ${props => props.theme.dropDownHover};
   }
   transition: background-color 0.1s linear 0s;
-  width: 120px;
+  width: 158px;
   &:active,
   &:focus {
     outline: none;
   }
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
 `;
 
 export const DropDownItems = styled.ul<{ open?: boolean }>`
@@ -55,4 +56,41 @@ export const DropDownItem = styled.li`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+`;
+
+export const DropDownText = styled.span`
+  max-width: 120px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+interface IconProps {
+  size: number | null;
+}
+
+function getIconSize(props: IconProps) {
+  if (!props.size) {
+    return css`
+      height: initial;
+      width: initial;
+    `;
+  }
+
+  return css`
+    height: ${props.size}px;
+    width: ${props.size}px;
+  `;
+}
+
+export const IconWrapper = styled.span`
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DropDownIcon = styled.img<IconProps>`
+  ${getIconSize}
 `;

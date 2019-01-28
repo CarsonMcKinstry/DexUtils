@@ -3,13 +3,19 @@ import {
   DropDownButton,
   DropDownItems,
   DropDownContainer,
+  DropDownText,
+  DropDownIcon,
+  IconWrapper,
 } from './DropDown.styles';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import dropdownArrow from './down.svg';
+import clearIcon from './clear.svg';
 
 const { useState, useRef } = React;
 
 interface DropDownProps {
   onChange?: (option: string) => void;
+  onClear?: () => void;
   value?: string;
   placeholder?: string;
 }
@@ -19,12 +25,27 @@ export const DropDown: React.SFC<DropDownProps> = ({
   value,
   placeholder = 'Choose one...',
   onChange,
+  onClear,
 }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [currentSelection, setCurrentSelection] = useState('');
   const ref = useRef(null);
 
   useOutsideClick(ref, () => setDropDownOpen(false), dropDownOpen);
+
+  function clearSelection(e: React.MouseEvent<HTMLElement>) {
+    if (currentSelection.trim() !== '') {
+      e.stopPropagation();
+      setCurrentSelection('');
+      if (onClear) {
+        onClear();
+      }
+    }
+  }
+
+  const dropdownIcon =
+    currentSelection === '' || value === '' ? dropdownArrow : clearIcon;
+  const iconSize = currentSelection === '' || value === '' ? null : 18;
 
   return (
     <DropDownContainer>
@@ -33,7 +54,14 @@ export const DropDown: React.SFC<DropDownProps> = ({
         role="select"
         onClick={() => setDropDownOpen(!dropDownOpen)}
       >
-        {value || currentSelection || placeholder}
+        <DropDownText>{value || currentSelection || placeholder} </DropDownText>
+        <IconWrapper>
+          <DropDownIcon
+            size={iconSize}
+            onClick={clearSelection}
+            src={dropdownIcon}
+          />
+        </IconWrapper>
       </DropDownButton>
       <DropDownItems open={dropDownOpen} ref={ref}>
         {React.Children.map(children, child => {
