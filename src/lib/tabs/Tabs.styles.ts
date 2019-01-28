@@ -1,4 +1,18 @@
 import styled from '../styled-components';
+import ThemeInterface from '../theme';
+
+interface TabProps {
+  active?: boolean;
+  theme: ThemeInterface;
+}
+
+function isActive(props: TabProps) {
+  const {
+    theme: { frame, tabInactive },
+    active,
+  } = props;
+  return active ? frame : tabInactive;
+}
 
 export const Tabs = styled.ul`
   margin: 0;
@@ -6,8 +20,8 @@ export const Tabs = styled.ul`
   display: flex;
 `;
 
-export const Tab = styled.li`
-  background-color: ${props => props.theme.frame};
+export const Tab = styled('li')<TabProps>`
+  background-color: ${isActive};
   height: 44px;
   padding: 12px;
   box-sizing: border-box;

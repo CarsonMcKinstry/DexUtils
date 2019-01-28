@@ -5,6 +5,8 @@ import { theme } from './theme';
 import { Header } from './header/Header.styles';
 import { Tabs, Tab } from './tabs/Tabs.styles';
 import { Frame } from './frame/Frame.styles';
+import { MenuBar } from './menuBar/MenuBar.styles';
+import { DropDown, DropDownItem } from './dropdown/DropDown';
 
 const DexUtils = () => (
   <ThemeProvider theme={theme}>
@@ -12,11 +14,28 @@ const DexUtils = () => (
       <GlobalStyle />
       <Header>
         <Tabs>
-          <Tab>New Tab</Tab>
+          <Tab active={true}>New Tab</Tab>
           <Tab> + </Tab>
         </Tabs>
       </Header>
-      <Frame />
+      <Frame>
+        <MenuBar>
+          <DropDown>
+            <DropDownItem>stuff</DropDownItem>
+            <DropDownItem>other stuff</DropDownItem>
+            <DropDownItem>more stuff that is really long</DropDownItem>
+            <DropDownItem>stuff</DropDownItem>
+            <DropDownItem>other stuff</DropDownItem>
+            <DropDownItem>more stuff that is really long</DropDownItem>
+            <DropDownItem>stuff</DropDownItem>
+            <DropDownItem>other stuff</DropDownItem>
+            <DropDownItem>more stuff that is really long</DropDownItem>
+            <DropDownItem>stuff</DropDownItem>
+            <DropDownItem>other stuff</DropDownItem>
+            <DropDownItem>more stuff that is really long</DropDownItem>
+          </DropDown>
+        </MenuBar>
+      </Frame>
     </>
   </ThemeProvider>
 );
