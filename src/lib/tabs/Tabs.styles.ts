@@ -20,6 +20,11 @@ export const Tabs = styled.ul`
   display: flex;
 `;
 
+export const TabIcon = styled.img`
+  height: 18px;
+  width: 18px;
+`;
+
 export const Tab = styled('li')<TabProps>`
   background-color: ${isActive};
   height: 44px;
@@ -31,4 +36,7 @@ export const Tab = styled('li')<TabProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  span + ${TabIcon} {
+    margin-left: 12px;
+  }
 `;

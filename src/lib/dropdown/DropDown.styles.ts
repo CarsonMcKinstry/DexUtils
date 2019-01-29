@@ -27,6 +27,13 @@ export const DropDownButton = styled.button`
   align-items: center;
   justify-content: space-between;
   height: 40px;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover {
+      background-color: ${props => props.theme.editor};
+    }
+  }
 `;
 
 export const DropDownItems = styled.ul<{ open?: boolean }>`

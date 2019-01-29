@@ -8,8 +8,8 @@ import {
   IconWrapper,
 } from './DropDown.styles';
 import { useOutsideClick } from '../hooks/useOutsideClick';
-import dropdownArrow from './down.svg';
-import clearIcon from './clear.svg';
+import dropdownArrow from '../icons/down.svg';
+import clearIcon from '../icons/clear.svg';
 
 const { useState, useRef } = React;
 
@@ -18,6 +18,7 @@ interface DropDownProps {
   onClear?: () => void;
   value?: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 export const DropDown: React.SFC<DropDownProps> = ({
@@ -26,6 +27,7 @@ export const DropDown: React.SFC<DropDownProps> = ({
   placeholder = 'Choose one...',
   onChange,
   onClear,
+  disabled,
 }) => {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [currentSelection, setCurrentSelection] = useState('');
@@ -53,6 +55,7 @@ export const DropDown: React.SFC<DropDownProps> = ({
         title={value || currentSelection || placeholder}
         role="select"
         onClick={() => setDropDownOpen(!dropDownOpen)}
+        disabled={disabled}
       >
         <DropDownText>{value || currentSelection || placeholder} </DropDownText>
         <IconWrapper>
