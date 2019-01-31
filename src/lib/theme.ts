@@ -7,6 +7,7 @@ export default interface ThemeInterface {
   frame: string;
   tabInactive: string;
   editor: string;
+  editorActiveLine: string;
   text: string;
   borderRadius: number;
   dropDownHover: string;
@@ -22,6 +23,7 @@ export const theme: ThemeInterface = {
   tabInactive: 'rgb(15, 32, 45)',
   frame: 'rgb(23, 43, 58)',
   editor: '#111D28',
+  editorActiveLine: '#172430',
   text: '#ffffff',
   borderRadius: 3,
   dropDownHover: 'rgb(18, 37, 53)',

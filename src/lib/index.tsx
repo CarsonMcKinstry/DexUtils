@@ -8,6 +8,7 @@ import { Frame } from './frame/Frame.styles';
 import { MenuBar } from './menuBar/MenuBar.styles';
 import { DropDown, DropDownItem } from './dropdown/DropDown';
 import { Search } from './search/Search.styles';
+import { Editor } from './editor/Editor';
 import clearIcon from './icons/clear.svg';
 import addIcon from './icons/add.svg';
 
@@ -58,6 +59,7 @@ const DexUtils = () => (
           </DropDown>
           <Search />
         </MenuBar>
+        <Editor json={{}} />
       </Frame>
     </>
   </ThemeProvider>
