@@ -40,7 +40,7 @@ declare module 'jsoneditor' {
 
   export default class JSONEditor {
     constructor(
-      container: HTMLElement,
+      container: HTMLElement | null,
       options?: JSONEditorOptions,
       json?: Object
     );

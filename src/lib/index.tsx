@@ -12,6 +12,10 @@ import { Editor } from './editor/Editor';
 import clearIcon from './icons/clear.svg';
 import addIcon from './icons/add.svg';
 
+const handleSave = (js: any) => {
+  console.log(js);
+};
+
 const DexUtils = () => (
   <ThemeProvider theme={theme}>
     <>
@@ -59,13 +63,7 @@ const DexUtils = () => (
           </DropDown>
           <Search />
         </MenuBar>
-        <Editor
-          json={{
-            foo: 'bar',
-            meaning: 42,
-            isHandsome: true,
-          }}
-        />
+        <Editor json={{}} onChange={handleSave} />
       </Frame>
     </>
   </ThemeProvider>
