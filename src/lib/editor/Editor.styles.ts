@@ -85,11 +85,11 @@ export const EditorContainer = styled.div`
   .ace_keyword.ace_other.ace_unit,
   .ace_support.ace_constant,
   .ace_variable.ace_parameter {
-    color: #e78c45 !important;
+    color: ${props => props.theme.orange} !important;
   }
 
   .ace_constant.ace_language {
-    color: purple !important;
+    color: ${props => props.theme.pink} !important;
   }
 
   .ace_constant.ace_other {
@@ -97,20 +97,20 @@ export const EditorContainer = styled.div`
   }
   .ace_invalid {
     color: #ced2cf !important;
-    background-color: #df5f5f !important;
+    background-color: ${props => props.theme.red} !important;
   }
   .ace_invalid.ace_deprecated {
     color: #ced2cf !important;
     background-color: #b798bf !important;
   }
   .ace_fold {
-    background-color: #7aa6da !important;
+    background-color: ${props => props.theme.blue} !important;
     border-color: #dedede !important;
   }
   .ace_entity.ace_name.ace_function,
   .ace_support.ace_function,
   .ace_variable {
-    color: #7aa6da !important;
+    color: ${props => props.theme.blue} !important;
   }
   .ace_support.ace_class,
   .ace_support.ace_type {
@@ -119,14 +119,14 @@ export const EditorContainer = styled.div`
   .ace_heading,
   .ace_markup.ace_heading,
   .ace_string {
-    color: #b9ca4a !important;
+    color: ${props => props.theme.green} !important;
   }
   .ace_entity.ace_name.ace_tag,
   .ace_entity.ace_other.ace_attribute-name,
   .ace_meta.ace_tag,
   .ace_string.ace_regexp,
   .ace_variable {
-    color: #d54e53 !important;
+    color: ${props => props.theme.blue} !important;
   }
   .ace_comment {
     color: #969896 !important;

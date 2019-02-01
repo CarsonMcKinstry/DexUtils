@@ -3,6 +3,7 @@ export default interface ThemeInterface {
   green: string;
   orange: string;
   blue: string;
+  pink: string;
   background: string;
   frame: string;
   tabInactive: string;
@@ -19,6 +20,7 @@ export const theme: ThemeInterface = {
   red: '#F0504A',
   orange: '#F49403',
   blue: '#2373CD',
+  pink: '#D64292',
   background: 'rgb(9, 20, 28)',
   tabInactive: 'rgb(15, 32, 45)',
   frame: 'rgb(23, 43, 58)',

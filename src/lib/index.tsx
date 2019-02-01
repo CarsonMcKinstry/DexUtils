@@ -59,7 +59,13 @@ const DexUtils = () => (
           </DropDown>
           <Search />
         </MenuBar>
-        <Editor json={{}} />
+        <Editor
+          json={{
+            foo: 'bar',
+            meaning: 42,
+            isHandsome: true,
+          }}
+        />
       </Frame>
     </>
   </ThemeProvider>
