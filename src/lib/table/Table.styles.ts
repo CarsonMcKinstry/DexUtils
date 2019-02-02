@@ -24,12 +24,16 @@ export const TableHeader = styled.div.attrs({ role: 'row' })`
   top: 0;
   font-weight: bolder;
   color: ${props => props.theme.tableHeaderColor};
+  font-size: 16px;
 `;
 
 export const ColumnHeader = styled.div.attrs({ role: 'columnheader' })`
   padding: 12px 6px;
   box-sizing: border-box;
   letter-spacing: 0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     background-color: ${props => props.theme.frameHighlight};
   }
@@ -46,7 +50,7 @@ export const Row = styled.div.attrs({ role: 'row' })`
   &:last-child {
     border-bottom-width: 0;
   }
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   &:hover {
     background-color: ${props => props.theme.frameHighlight};

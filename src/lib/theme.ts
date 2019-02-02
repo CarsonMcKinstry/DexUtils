@@ -33,7 +33,7 @@ export const theme: ThemeInterface = {
   text: '#ffffff',
   borderRadius: 3,
   dropDownHover: 'rgb(18, 37, 53)',
-  tableBorderColor: '#A0A4A9',
+  tableBorderColor: '#bcbcbc',
   tableHeaderColor: '#B0B7BC',
   shadows: [
     '0',
