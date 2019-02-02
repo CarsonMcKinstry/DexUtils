@@ -6,6 +6,7 @@ export default interface ThemeInterface {
   pink: string;
   background: string;
   frame: string;
+  frameHighlight: string;
   tabInactive: string;
   editor: string;
   editorActiveLine: string;
@@ -13,6 +14,8 @@ export default interface ThemeInterface {
   borderRadius: number;
   dropDownHover: string;
   shadows: string[];
+  tableBorderColor: string;
+  tableHeaderColor: string;
 }
 
 export const theme: ThemeInterface = {
@@ -24,11 +27,14 @@ export const theme: ThemeInterface = {
   background: 'rgb(9, 20, 28)',
   tabInactive: 'rgb(15, 32, 45)',
   frame: 'rgb(23, 43, 58)',
+  frameHighlight: 'rgb(32, 60, 82)',
   editor: '#111D28',
   editorActiveLine: '#172430',
   text: '#ffffff',
   borderRadius: 3,
   dropDownHover: 'rgb(18, 37, 53)',
+  tableBorderColor: '#A0A4A9',
+  tableHeaderColor: '#B0B7BC',
   shadows: [
     '0',
     '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',

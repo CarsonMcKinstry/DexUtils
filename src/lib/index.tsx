@@ -9,6 +9,7 @@ import { MenuBar } from './menuBar/MenuBar.styles';
 import { DropDown, DropDownItem } from './dropdown/DropDown';
 import { Search } from './search/Search.styles';
 import { Editor } from './editor/Editor';
+import { Table } from './table/Table';
 import clearIcon from './icons/clear.svg';
 import addIcon from './icons/add.svg';
 
@@ -63,6 +64,7 @@ const DexUtils = () => (
           </DropDown>
           <Search />
         </MenuBar>
+        <Table />
         <Editor json={{}} onChange={handleSave} />
       </Frame>
     </>

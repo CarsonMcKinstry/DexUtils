@@ -50,6 +50,7 @@ export const DropDownItems = styled.ul<{ open?: boolean }>`
   border-radius: 3px;
   border-top-left-radius: 0;
   box-shadow: ${props => props.theme.shadows[2]};
+  z-index: 1000;
 `;
 
 export const DropDownItem = styled.li`
