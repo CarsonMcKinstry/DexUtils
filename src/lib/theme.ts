@@ -16,6 +16,7 @@ export default interface ThemeInterface {
   shadows: string[];
   tableBorderColor: string;
   tableHeaderColor: string;
+  contextHandle: string;
 }
 
 export const theme: ThemeInterface = {
@@ -28,6 +29,7 @@ export const theme: ThemeInterface = {
   tabInactive: 'rgb(15, 32, 45)',
   frame: 'rgb(23, 43, 58)',
   frameHighlight: 'rgb(32, 60, 82)',
+  contextHandle: '#354E5B',
   editor: '#111D28',
   editorActiveLine: '#172430',
   text: '#ffffff',
