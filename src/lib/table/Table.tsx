@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as faker from 'faker';
 import {
   TableContainer,
   TableHeader,
@@ -11,20 +12,13 @@ export const Table = () => {
   return (
     <TableContainer>
       <TableHeader>
-        <ColumnHeader>Header 1</ColumnHeader>
-        <ColumnHeader>Header 2</ColumnHeader>
-        <ColumnHeader>Header 3</ColumnHeader>
+        <ColumnHeader>Id</ColumnHeader>
+        <ColumnHeader>Title</ColumnHeader>
       </TableHeader>
       {[...Array(100)].map((_, i) => (
         <Row>
-          {[...Array(3)].map((__, j) => (
-            <Cell>
-              [{i},{j}] Lorem ipsum dolor sit amet consectetur, adipisicing
-              elit. Earum laboriosam eos aliquid laborum ratione neque? Non a
-              similique perspiciatis debitis eius, alias tempora dignissimos,
-              voluptatibus corrupti minima dicta, ratione soluta!
-            </Cell>
-          ))}
+          <Cell>{faker.random.uuid()}</Cell>
+          <Cell>{faker.company.catchPhrase()}</Cell>
         </Row>
       ))}
     </TableContainer>
